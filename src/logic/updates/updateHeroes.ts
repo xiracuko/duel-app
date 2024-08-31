@@ -16,16 +16,15 @@ export const updateHeroes: UpdateHeroesFunc = (
       if (updatedHero.y <= 0 || updatedHero.y >= canvasHeight - 20) updatedHero.dy *= -1;
 
       if (mousePositionRef.current) {
-        const distance = Math.sqrt(
-          (updatedHero.x - mousePositionRef.current.x) ** 2 
-          + (updatedHero.y - mousePositionRef.current.y) ** 2
-        );
+        const { x: mouseX, y: mouseY } = mousePositionRef.current;
+        const distance = Math.hypot(updatedHero.x - mouseX, updatedHero.y - mouseY);
 
         if (distance < 30) updatedHero.dy *= -1;
       }
 
       if (time - lastFireTimeRef.current[index] > updatedHero.fireRate) {
         lastFireTimeRef.current[index] = time;
+        
         setSpells((prevSpells) => [
           ...prevSpells,
           {

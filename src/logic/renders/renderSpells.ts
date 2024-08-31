@@ -1,11 +1,13 @@
 import { RenderSpellsFunc } from "../../types";
 
 export const renderSpells: RenderSpellsFunc = (ctx, spells) => {
-  spells.forEach((spell) => {
-    ctx?.beginPath();
-    ctx?.arc(spell.x, spell.y, 5, 0, 2 * Math.PI);
-    ctx!.fillStyle = spell.color;
-    ctx?.fill();
-    ctx?.closePath();
+  if (!ctx) return;
+
+  spells.forEach(({ x, y, color }) => {
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.closePath();
   });
 };

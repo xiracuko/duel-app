@@ -49,16 +49,18 @@ const CanvasBlock: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      
+
       canvas?.removeEventListener('click', clickHandler);
       canvas?.removeEventListener('mousemove', mouseMoveHandler);
     };
   }, [heroes]);
 
   const updateHero = (updatedHero: HeroTypes) => {
-    setHeroes((prevHeroes) => (
-      prevHeroes.map((hero, index) => index === selectedHeroIndex ? updatedHero : hero)
-    ));
+    if (selectedHeroIndex !== null) {
+      setHeroes((prevHeroes) => (
+        prevHeroes.map((hero, index) => index === selectedHeroIndex ? updatedHero : hero)
+      ));
+    }
   };
 
   return (

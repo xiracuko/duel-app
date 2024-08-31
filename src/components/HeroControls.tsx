@@ -8,12 +8,10 @@ const HeroControls: React.FC<HeroControlsProps> = ({ hero, setHero, heroIndex })
     { label: 'Fire rate (ms):', type: 'number', name: 'fireRate', min: 200, max: 2000, value: hero.fireRate },
   ];
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { name, value, type } = e.target;
-
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = ({ target: { name, value, type } }) => {
     setHero({
       ...hero,
-      [name]: ['number', 'range'].includes(type) ? parseInt(value, 10) : value
+      [name]: type === 'number' || type === 'range' ? parseInt(value, 10) : value
     });
   };
 

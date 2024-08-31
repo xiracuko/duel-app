@@ -19,11 +19,14 @@ export const updateSpells: UpdateSpellsFunc = (
         setHitCounts((prevCounts) => {
           const newCounts = [...prevCounts];
           newCounts[targetHeroIndex]++;
+
           return newCounts;
         });
+
+        return false;
       }
 
-      return !hit && spell.x > 0 && spell.x < canvasWidth;
+      return spell.x > 0 && spell.x < canvasWidth;
     })
   ));
 };

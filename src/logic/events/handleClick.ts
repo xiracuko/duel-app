@@ -6,9 +6,12 @@ export const handleClick: HandleClickFunc = (event, canvas, heroes, setSelectedH
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
   const mouseY = event.clientY - rect.top;
+  const hitRadiusSquared = 20 ** 2;
 
   heroes.forEach((hero, index) => {
-    const distance = Math.sqrt((hero.x - mouseX) ** 2 + (hero.y - mouseY) ** 2);
-    if (distance < 20) setSelectedHeroIndex(index);
+    const dx = hero.x - mouseX;
+    const dy = hero.y - mouseY;
+
+    if (dx * dx + dy * dy < hitRadiusSquared) setSelectedHeroIndex(index);
   });
 };
