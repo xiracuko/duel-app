@@ -1,9 +1,12 @@
 import React from 'react';
+import CanvasBlock from './components/CanvasBlock';
 
 const App: React.FC = () => {
 
   return (
-    <div className="App">App</div>
+    <div className="App">
+      <CanvasBlock />
+    </div>
   );
 }
 
