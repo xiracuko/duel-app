@@ -33,3 +33,8 @@ export type UpdateHeroesFunc = (
   time: number,
   height: number
 ) => void;
+
+export type RenderSpellsFunc = (
+  ctx: CanvasRenderingContext2D | null,
+  spells: SpellTypes[]
+) => void;
