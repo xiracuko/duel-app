@@ -1,5 +1,6 @@
 import React from "react";
 import { HeroTypes, SpellTypes } from "../types";
+import { renderHeroes } from "../logic/renders/renderHeroes";
 
 const CanvasBlock: React.FC = () => {
   const [heroes, setHeroes] = React.useState<HeroTypes[]>([
@@ -19,6 +20,9 @@ const CanvasBlock: React.FC = () => {
 
     const update = (time: number) => {
       ctx?.clearRect(0, 0, canvas!.width, canvas!.height);
+
+      renderHeroes(ctx!, heroes);
+      
       animationFrameId = requestAnimationFrame(update);
     };
 

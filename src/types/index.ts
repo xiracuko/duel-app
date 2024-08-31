@@ -14,3 +14,8 @@ export type SpellTypes = {
   dx: number;
   color: string;
 };
+
+export type RenderHeroesFunc = (
+  ctx: CanvasRenderingContext2D | null,
+  heroes: HeroTypes[]
+) => void;
