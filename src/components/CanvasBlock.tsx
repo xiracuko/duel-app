@@ -3,6 +3,7 @@ import { HeroTypes, PositionTypes, SpellTypes } from "../types";
 import { renderHeroes } from "../logic/renders/renderHeroes";
 import { updateHeroes } from "../logic/updates/updateHeroes";
 import { renderSpells } from "../logic/renders/renderSpells";
+import { updateSpells } from "../logic/updates/updateSpells";
 
 const CanvasBlock: React.FC = () => {
   const [heroes, setHeroes] = React.useState<HeroTypes[]>([
@@ -29,6 +30,7 @@ const CanvasBlock: React.FC = () => {
       renderSpells(ctx!, spells);
 
       updateHeroes(setHeroes, setSpells, mousePositionRef, lastFireTimeRef, time, canvas!.height);
+      updateSpells(setSpells, heroes, setHitCounts, canvas!.width);
 
       animationFrameId = requestAnimationFrame(update);
     };

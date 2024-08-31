@@ -38,3 +38,10 @@ export type RenderSpellsFunc = (
   ctx: CanvasRenderingContext2D | null,
   spells: SpellTypes[]
 ) => void;
+
+export type UpdateSpellsFunc = (
+  setSpells: React.Dispatch<React.SetStateAction<SpellTypes[]>>,
+  heroes: HeroTypes[],
+  setHitCounts: React.Dispatch<React.SetStateAction<number[]>>,
+  canvasWidth: number
+) => void;
