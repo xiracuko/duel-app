@@ -19,3 +19,17 @@ export type RenderHeroesFunc = (
   ctx: CanvasRenderingContext2D | null,
   heroes: HeroTypes[]
 ) => void;
+
+export type PositionTypes = {
+  x: number;
+  y: number;
+};
+
+export type UpdateHeroesFunc = (
+  setHeroes: React.Dispatch<React.SetStateAction<HeroTypes[]>>,
+  setSpells: React.Dispatch<React.SetStateAction<SpellTypes[]>>,
+  mousePositionRef: React.MutableRefObject<PositionTypes | null>,
+  lastFireTimeRef: React.MutableRefObject<number[]>,
+  time: number,
+  height: number
+) => void;
