@@ -6,6 +6,7 @@ import { renderSpells } from "../logic/renders/renderSpells";
 import { updateSpells } from "../logic/updates/updateSpells";
 import { handleClick } from "../logic/events/handleClick";
 import HeroControls from "./HeroControls";
+import { handleMouseMove } from "../logic/events/handleMouseMove";
 
 const CanvasBlock: React.FC = () => {
   const [heroes, setHeroes] = React.useState<HeroTypes[]>([
@@ -39,13 +40,18 @@ const CanvasBlock: React.FC = () => {
     };
 
     const clickHandler = (event: MouseEvent) => handleClick(event, canvas, heroes, setSelectedHeroIndex);
+    const mouseMoveHandler = (event: MouseEvent) => handleMouseMove(event, canvas, mousePositionRef);
+
     canvas?.addEventListener('click', clickHandler);
+    canvas?.addEventListener('mousemove', mouseMoveHandler);
 
     animationFrameId = requestAnimationFrame(update);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      
       canvas?.removeEventListener('click', clickHandler);
+      canvas?.removeEventListener('mousemove', mouseMoveHandler);
     };
   }, [heroes]);
 

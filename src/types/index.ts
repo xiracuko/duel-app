@@ -58,3 +58,9 @@ export interface HeroControlsProps {
   setHero: (updatedHero: HeroTypes) => void;
   heroIndex: number;
 }
+
+export type HandleMouseMoveFunc = (
+  event: MouseEvent,
+  canvas: HTMLCanvasElement | null,
+  mousePositionRef: React.MutableRefObject<PositionTypes | null>
+) => void;
