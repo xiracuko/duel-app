@@ -10,8 +10,8 @@ import { handleMouseMove } from "../logic/events/handleMouseMove";
 
 const CanvasBlock: React.FC = () => {
   const [heroes, setHeroes] = React.useState<HeroTypes[]>([
-    { x: 20, y: 50, dy: 2, color: '#0000FF', spellColor: '#00FFFF', speed: 2, fireRate: 1000 },
-    { x: 480, y: 50, dy: 2, color: '#FF0000', spellColor: '#FFA500', speed: 2, fireRate: 1000 }
+    { x: 20, y: 50, dy: 2, color: '#0000FF', spellColor: '#0000FF', speed: 2, fireRate: 1000 },
+    { x: 480, y: 50, dy: 2, color: '#FF0000', spellColor: '#FF0000', speed: 2, fireRate: 1000 }
   ]);
 
   const [spells, setSpells] = React.useState<SpellTypes[]>([]);
@@ -64,19 +64,19 @@ const CanvasBlock: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="canvasBlock">
       <canvas ref={canvasRef} width={500} height={500} />
-      <div>
-        <p>Hero 1 hits: {hitCounts[0]}</p>
-        <p>Hero 2 hits: {hitCounts[1]}</p>
+      <div className="canvasBlock--counts">
+        <p className="counts--one">Hero 1 hits: <span>{hitCounts[1]}</span></p>
+        <p className="counts--two">Hero 2 hits: <span>{hitCounts[0]}</span></p>
       </div>
-      {selectedHeroIndex !== null && (
+      {selectedHeroIndex !== null ? (
         <HeroControls
           hero={heroes[selectedHeroIndex]}
           setHero={updateHero}
           heroIndex={selectedHeroIndex}
         />
-      )}
+      ) : (<p className="mainTitle">Click on the hero to customize the characteristics!</p>)}
     </div>
   );
 };
