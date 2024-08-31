@@ -52,3 +52,9 @@ export type HandleClickFunc = (
   heroes: HeroTypes[],
   setSelectedHeroIndex: React.Dispatch<React.SetStateAction<number | null>>
 ) => void;
+
+export interface HeroControlsProps {
+  hero: HeroTypes;
+  setHero: (updatedHero: HeroTypes) => void;
+  heroIndex: number;
+}

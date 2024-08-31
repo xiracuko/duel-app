@@ -49,6 +49,12 @@ const CanvasBlock: React.FC = () => {
     };
   }, [heroes]);
 
+  const updateHero = (updatedHero: HeroTypes) => {
+    setHeroes((prevHeroes) => (
+      prevHeroes.map((hero, index) => index === selectedHeroIndex ? updatedHero : hero)
+    ));
+  };
+
   return (
     <div>
       <canvas ref={canvasRef} width={500} height={500} />
@@ -56,7 +62,13 @@ const CanvasBlock: React.FC = () => {
         <p>Hero 1 hits: {hitCounts[0]}</p>
         <p>Hero 2 hits: {hitCounts[1]}</p>
       </div>
-      {selectedHeroIndex !== null && <HeroControls />}
+      {selectedHeroIndex !== null && (
+        <HeroControls
+          hero={heroes[selectedHeroIndex]}
+          setHero={updateHero}
+          heroIndex={selectedHeroIndex}
+        />
+      )}
     </div>
   );
 };
