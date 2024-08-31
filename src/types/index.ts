@@ -45,3 +45,10 @@ export type UpdateSpellsFunc = (
   setHitCounts: React.Dispatch<React.SetStateAction<number[]>>,
   canvasWidth: number
 ) => void;
+
+export type HandleClickFunc = (
+  event: MouseEvent,
+  canvas: HTMLCanvasElement | null,
+  heroes: HeroTypes[],
+  setSelectedHeroIndex: React.Dispatch<React.SetStateAction<number | null>>
+) => void;

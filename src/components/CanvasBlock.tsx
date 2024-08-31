@@ -4,6 +4,8 @@ import { renderHeroes } from "../logic/renders/renderHeroes";
 import { updateHeroes } from "../logic/updates/updateHeroes";
 import { renderSpells } from "../logic/renders/renderSpells";
 import { updateSpells } from "../logic/updates/updateSpells";
+import { handleClick } from "../logic/events/handleClick";
+import HeroControls from "./HeroControls";
 
 const CanvasBlock: React.FC = () => {
   const [heroes, setHeroes] = React.useState<HeroTypes[]>([
@@ -13,9 +15,10 @@ const CanvasBlock: React.FC = () => {
 
   const [spells, setSpells] = React.useState<SpellTypes[]>([]);
   const [hitCounts, setHitCounts] = React.useState<number[]>([0, 0]);
+  const [selectedHeroIndex, setSelectedHeroIndex] = React.useState<number | null>(null);
+
   const mousePositionRef = React.useRef<PositionTypes | null>(null);
   const lastFireTimeRef = React.useRef([0, 0]);
-
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   React.useEffect(() => {
@@ -35,10 +38,14 @@ const CanvasBlock: React.FC = () => {
       animationFrameId = requestAnimationFrame(update);
     };
 
+    const clickHandler = (event: MouseEvent) => handleClick(event, canvas, heroes, setSelectedHeroIndex);
+    canvas?.addEventListener('click', clickHandler);
+
     animationFrameId = requestAnimationFrame(update);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      canvas?.removeEventListener('click', clickHandler);
     };
   }, [heroes]);
 
@@ -49,6 +56,7 @@ const CanvasBlock: React.FC = () => {
         <p>Hero 1 hits: {hitCounts[0]}</p>
         <p>Hero 2 hits: {hitCounts[1]}</p>
       </div>
+      {selectedHeroIndex !== null && <HeroControls />}
     </div>
   );
 };
